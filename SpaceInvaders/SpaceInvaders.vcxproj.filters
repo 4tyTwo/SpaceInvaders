@@ -56,5 +56,8 @@
     <ClInclude Include="BoolMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyVectror.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

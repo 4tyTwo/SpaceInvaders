@@ -4,9 +4,6 @@ GameObj::GameObj(){
 
 }
 
-GameObj::~GameObj(){
-
-}
 void GameObj::settexture(std::string path) {
   texture.loadFromFile(path);
 }
@@ -22,12 +19,12 @@ void GameObj::setcordinates(sf::Vector2i cordinates) {
   cord = cordinates;
   if (cord.x < 0)
       cord.x=0;
-  if (cord.x > 1000-size.x)
-      cord.x=1000-size.x;
+  if (cord.x > 1200-size.x)
+      cord.x=1200-size.x;
   if (cord.y < 0)
     cord.y = 0;
-  if (cord.y > 600 - size.y)
-    cord.y = 600 - size.y;
+  if (cord.y > 690 - size.y)
+    cord.y = 690 - size.y;
 }
 
 void GameObj::setsize(int x, int y) {

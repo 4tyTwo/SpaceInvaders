@@ -167,6 +167,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameObj.h" />
+    <ClInclude Include="MyVectror.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Spaceship.h" />
   </ItemGroup>

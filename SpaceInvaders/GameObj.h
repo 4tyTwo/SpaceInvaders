@@ -18,17 +18,8 @@ public:
   void settexture(std::string path);
   virtual void move();
   inline void sufferdamage(int damage) { health-=damage; };
-  /*virtual sf::Vector2i getdirection();
-  virtual void setdirection(sf::Vector2i indirection);
-  virtual int getspeed();
-  virtual void setspeed(int inspeed);
-  virtual sf::Vector2i getlaserdirection();
-  virtual void setlaserdirection(sf::Vector2i indirection);
-  virtual int getlaserdamage();
-  virtual void setlaserdamage(int indamage);*/
   sf::Sprite getsprite();
-  virtual ~GameObj();
-  std::string type;
+  virtual ~GameObj() = 0 {}
 protected:
   sf::Texture texture;//Текстура объекта
   sf::Vector2i size,cord; //Размеры (высота, ширина) и кординаты (x,y)
