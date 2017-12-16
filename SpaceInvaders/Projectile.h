@@ -6,7 +6,7 @@ public:
   Projectile();
   Projectile(std::string texturepath, int indamage,int inspeed,sf::Vector2i indirection,sf::Vector2i incordinates);
   void move();
-  bool checkcollision(GameObj* object);
+  bool checkCollision(GameObj* object);
   inline int getdamage() { return damage; };
   virtual ~Projectile();
 private:

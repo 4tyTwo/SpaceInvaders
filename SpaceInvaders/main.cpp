@@ -5,15 +5,16 @@
 #include <time.h>
 #include "MyVectror.h"
 #include "Controller.h"
+#include <Windows.h>
 
 
-void collisioncheck(MyVector<Spaceship>* spaceshipvector,MyVector<Projectile>* laservector) {
-  for (int i = 0; i < laservector->size() && spaceshipvector->size(); i++) {
-    if (laservector->get(i).checkcollision(&spaceshipvector->get(0))) {
-      spaceshipvector->get(0).sufferdamage(laservector->get(i).getdamage());
-      if (spaceshipvector->get(0).gethealth() <= 0)
-        spaceshipvector->pop();
-      laservector->erase(i);
+void collisionCheck(MyVector<Spaceship>* spaceship_vector,MyVector<Projectile>* laser_vector) {
+  for (auto i = 0; i < laser_vector->size() && spaceship_vector->size(); i++) {
+    if (laser_vector->get(i).checkCollision(&spaceship_vector->get(0))) {
+      spaceship_vector->get(0).sufferdamage(laser_vector->get(i).getdamage());
+      if (spaceship_vector->get(0).getHealth() <= 0)
+        spaceship_vector->pop();
+      laser_vector->erase(i);
       break;
     }
   }
@@ -21,31 +22,31 @@ void collisioncheck(MyVector<Spaceship>* spaceshipvector,MyVector<Projectile>* l
 
 Spaceship createship() {
   Spaceship tmp;
-  tmp.settexture("D:\\Gunship.png");
-  tmp.setsize(98, 62);
-  tmp.setcordinates(551, 690 - 72);
-  tmp.setspeed(10);
-  tmp.sethealth(3);
-  tmp.setlaserdamage(1);
-  tmp.setlaserdirection(sf::Vector2i(0, -1));
+  tmp.setTexture("C:\\Source\\Gunship.png");
+  tmp.setSize(98, 62);
+  tmp.setCordinates(551, 690 - 72);
+  tmp.setSpeed(10);
+  tmp.setHealth(3);
+  tmp.setLaserDamage(1);
+  tmp.setLaserDirection(sf::Vector2i(0, -1));
   return tmp;
 }
 
 
-int main() {
+int WINAPI WinMain(HINSTANCE hInstance,  HINSTANCE hPrevInstance,   LPSTR lpCmdLine,  int nCmdShow){
   srand(time(NULL));
   sf::Font font;
-  font.loadFromFile("D:\\Source\\Pixeled.ttf");
-  clock_t start, end,lastshot=0;
+  font.loadFromFile("C:\\Source\\Pixeled.ttf");
+  clock_t start, end,lastshot = 0;
   sf::RenderWindow Window(sf::VideoMode(1200,690),"Space Invaders", sf::Style::Close);
-  Window.setPosition(sf::Vector2i(0,0));
+  Window.setPosition(sf::Vector2i(0,0));                        
   sf::String info;
   bool gameon = true;
   int score = 0;
-  MyVector<Projectile> projectilevector, laservector;
-  MyVector<Spaceship> spaceshipvector;
+  MyVector<Projectile> projectile_vector, laser_vector;
+  MyVector<Spaceship> spaceship_vector;
   Controller ctrl;
-  spaceshipvector.add(createship());
+  spaceship_vector.add(createship());
   sf::Text InfoText;
   InfoText.setFont(font);
   InfoText.setStyle(sf::Text::Regular);
@@ -67,52 +68,52 @@ int main() {
     InfoText.setCharacterSize(20);
     info = "Score: " + std::to_string(score);
     InfoText.setString(info);
-    if (spaceshipvector.size())
-      info = "Lifes: " + std::to_string(spaceshipvector[0].gethealth());
+    if (spaceship_vector.size())
+      info = "Lives: " + std::to_string(spaceship_vector[0].getHealth());
     else
-      info = "Lifes: " + std::to_string(0);
+      info = "Lives: " + std::to_string(0);
     InfoText.setPosition(Window.getSize().x - 200.0, 25.0);
     Window.draw(InfoText);
     InfoText.setPosition(50, 25);
     InfoText.setString(info);
     Window.draw(InfoText);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && spaceshipvector.size()) {
-         spaceshipvector[0].setdirection(sf::Vector2i(-1,0));
-         spaceshipvector[0].move();
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && spaceship_vector.size()) {
+         spaceship_vector[0].setdirection(sf::Vector2i(-1,0));
+         spaceship_vector[0].move();
       }
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && spaceshipvector.size()) {
-          spaceshipvector[0].setdirection(sf::Vector2i(1, 0));
-          spaceshipvector[0].move();
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && spaceship_vector.size()) {
+          spaceship_vector[0].setdirection(sf::Vector2i(1, 0));
+          spaceship_vector[0].move();
       }
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !laservector.size() && spaceshipvector.size()){
-          laservector.add(spaceshipvector[0].shoot());
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !laser_vector.size() && spaceship_vector.size()){
+          laser_vector.add(spaceship_vector[0].shoot());
       }
-      for (int i = 0; i < projectilevector.size(); i++) {//Проверка
-        projectilevector[i].move();
-        if (!(projectilevector[0].getcordinates().y < Window.getSize().y - projectilevector[0].getsize().y))
-            projectilevector.erase(i--);
+      for (auto i = 0; i < projectile_vector.size(); i++) {//Проверка
+        projectile_vector[i].move();
+        if (!(projectile_vector[0].getCordinates().y < Window.getSize().y - projectile_vector[0].getSize().y))
+            projectile_vector.erase(i--);
       }
-      if (laservector.size()){//Проверка коллизии для снаряда игрока
-        laservector[0].move();
-        if (!(laservector[0].getcordinates().y > 0))
-          laservector.pop();
+      if (laser_vector.size()){//Проверка коллизии для снаряда игрока
+        laser_vector[0].move();
+        if (!(laser_vector[0].getCordinates().y > 0))
+          laser_vector.pop();
         }
-      gameon = ctrl.movecontrol();
-      score += ctrl.collision(laservector);
+      gameon = ctrl.moveControl();
+      score += ctrl.collision(laser_vector);
       if (ctrl.isEmpty()){
         ctrl.initialize();
-        spaceshipvector[0].sethealth(spaceshipvector[0].gethealth()+1);
+        spaceship_vector[0].setHealth(spaceship_vector[0].getHealth()+1);
       }
       ctrl.render();
-      ctrl.fire(&projectilevector);
-      collisioncheck(&spaceshipvector, &projectilevector);
-      gameon = gameon && spaceshipvector.size();
-      for (int i = 0; i < laservector.size(); i++)
-        Window.draw(laservector[i].getsprite());
-      for (int i = 0; i < projectilevector.size(); i++)
-        Window.draw(projectilevector[i].getsprite());
-    if (spaceshipvector.size())
-      Window.draw(spaceshipvector[0].getsprite());
+      ctrl.fire(&projectile_vector);
+      collisionCheck(&spaceship_vector, &projectile_vector);
+      gameon = gameon && spaceship_vector.size();
+      for (auto i = 0; i < laser_vector.size(); i++)
+        Window.draw(laser_vector[i].getSprite());
+      for (auto i = 0; i < projectile_vector.size(); i++)
+        Window.draw(projectile_vector[i].getSprite());
+    if (spaceship_vector.size())
+      Window.draw(spaceship_vector[0].getSprite());
     end = clock();
     if ((int)((((end - start) + 0.0) / CLOCKS_PER_SEC) * 1000)<=20)
      Sleep(20 - (int)((((end - start) + 0.0) / CLOCKS_PER_SEC) * 1000));
@@ -137,11 +138,11 @@ int main() {
       Window.draw(InfoText);
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ) {
         gameon = true;
-        spaceshipvector.clear();
-        spaceshipvector.add(createship());
+        spaceship_vector.clear();
+        spaceship_vector.add(createship());
         ctrl.initialize();
-        laservector.clear();
-        projectilevector.clear();
+        laser_vector.clear();
+        projectile_vector.clear();
         score = 0;
       }
       }

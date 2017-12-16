@@ -8,12 +8,12 @@ Spaceship();
 virtual void move();
 void setdirection(sf::Vector2i indirection);
 inline sf::Vector2i getdirection() { return direction; };
-inline void setspeed(int inspeed) { speed = abs(inspeed); };
+inline void setSpeed(int inspeed) { speed = abs(inspeed); };
 inline int getspeed() { return speed; };
 inline sf::Vector2i getlaserdirection() { return laserdirection; };
-void setlaserdirection(sf::Vector2i indirection);
+void setLaserDirection(sf::Vector2i indirection);
 inline int getlaserdamage() { return laserdamage; } ;
-void setlaserdamage(int indamage);
+void setLaserDamage(int indamage);
 virtual Projectile shoot();
 virtual ~Spaceship();
 private:

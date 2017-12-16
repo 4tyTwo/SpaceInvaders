@@ -1,15 +1,13 @@
 #include "Spaceship.h"
 
-Spaceship::Spaceship()
-{
+Spaceship::Spaceship(){
 }
 
-Spaceship::~Spaceship()
-{
+Spaceship::~Spaceship(){
 }
 
 void Spaceship::move() {
-  setcordinates(getcordinates() + (direction*speed));
+  setCordinates(getCordinates() + (direction*speed));
 }
 
 void Spaceship::setdirection(sf::Vector2i indirection) {
@@ -23,7 +21,7 @@ void Spaceship::setdirection(sf::Vector2i indirection) {
    direction.y = indirection.y;
 }
 
-void Spaceship::setlaserdirection(sf::Vector2i indirection) {
+void Spaceship::setLaserDirection(sf::Vector2i indirection) {
   if (indirection.x != 1 && indirection.x != 0)
     laserdirection.x = indirection.x / abs(indirection.x);
   else
@@ -34,11 +32,11 @@ void Spaceship::setlaserdirection(sf::Vector2i indirection) {
     laserdirection.y = indirection.y;
 }
 
-void Spaceship::setlaserdamage(int indamage) {
+void Spaceship::setLaserDamage(int indamage) {
   laserdamage = (indamage>0)? indamage : 1;
 }
 
 Projectile Spaceship::shoot() {
-  Projectile proj("D:\Projectile.png",laserdamage,5,laserdirection, sf::Vector2i(getcordinates().x + getsize().x/2,getcordinates().y - 3));
+  Projectile proj("C:\\Source\\Projectile.png",laserdamage,7,laserdirection, sf::Vector2i(getCordinates().x + getSize().x/2,getCordinates().y - 3));
   return proj;
 }

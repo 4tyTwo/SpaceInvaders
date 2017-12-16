@@ -14,7 +14,7 @@ void Enemy::trytoshoot(MyVector<Projectile> &vect) {
 }
 
 Projectile Enemy::shoot() {
-  Projectile proj("D:\\Projectile.png", getlaserdamage(), 5, sf::Vector2i(0,1), sf::Vector2i(getcordinates().x + getsize().x / 2, getcordinates().y + getsize().y -3));
+  Projectile proj("C:\\Source\\Projectile.png", getlaserdamage(), 5, sf::Vector2i(0,1), sf::Vector2i(getCordinates().x + getSize().x / 2, getCordinates().y + getSize().y -3));
   return proj;
 }
 

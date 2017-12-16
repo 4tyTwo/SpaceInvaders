@@ -1,0 +1,23 @@
+﻿  Controller.cpp
+Controller.cpp(25): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+Controller.cpp(30): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+Controller.cpp(50): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+Controller.cpp(51): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+Controller.cpp(66): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+Controller.cpp(95): warning C4018: <: несоответствие типов со знаком и без знака
+Controller.cpp(104): warning C4018: <: несоответствие типов со знаком и без знака
+Controller.cpp(114): warning C4018: <: несоответствие типов со знаком и без знака
+Controller.cpp(168): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  Enemy.cpp
+  GameObj.cpp
+  main.cpp
+main.cpp(37): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+main.cpp(75): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+main.cpp(93): warning C4018: <: несоответствие типов со знаком и без знака
+  Projectile.cpp
+  Spaceship.cpp
+  Создание кода...
+c:\projects\spaceinvaders\spaceinvaders\projectile.cpp(43): warning C4715: Projectile::checkCollision: значение возвращается не при всех путях выполнения
+c:\projects\spaceinvaders\spaceinvaders\controller.cpp(158): warning C4715: Controller::moveControl: значение возвращается не при всех путях выполнения
+  SpaceInvaders.vcxproj -> C:\Projects\SpaceInvaders\x64\Release\SpaceInvaders.exe
+  SpaceInvaders.vcxproj -> C:\Projects\SpaceInvaders\x64\Release\SpaceInvaders.pdb (Full PDB)

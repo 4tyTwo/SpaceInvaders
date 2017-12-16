@@ -5,20 +5,20 @@ class GameObj //Абстрактный класс, от которого будут наследоваться остальные объ
 {
 public:
   GameObj();
-  inline sf::Vector2i getsize() { return size; };
-  inline sf::Vector2i getcordinates() { return cord; };
-  inline int gethealth() { return health ;};
+  inline sf::Vector2i getSize() { return size; };
+  inline sf::Vector2i getCordinates() { return cord; };
+  inline int getHealth() { return health ;};
   inline int getreward() { return reward; };
-  void setsize(sf::Vector2i inSize);
-  void setsize(int x, int y);
-  void setcordinates(sf::Vector2i cordinates);
-  void setcordinates(int x, int y);
-  void sethealth(int inhealth);
-  inline void setreward(int inreward) {reward = inreward;};
-  void settexture(std::string path);
-  virtual void move();
+  void setSize(sf::Vector2i inSize);
+  void setSize(int x, int y);
+  void setCordinates(sf::Vector2i cordinates);
+  void setCordinates(int x, int y);
+  void setHealth(int inhealth);
+  inline void setReward(int inreward) {reward = inreward;};
+  void setTexture(std::string path);
+  virtual void move() = 0;
   inline void sufferdamage(int damage) { health-=damage; };
-  sf::Sprite getsprite();
+  sf::Sprite getSprite();
   virtual ~GameObj() = 0 {}
 protected:
   sf::Texture texture;//Текстура объекта
